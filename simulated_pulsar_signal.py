@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 # 1. Create time axis
 
 fs = 1000  # Sampling frequency in Hz (samples per second)
-T = 2       # Total duration of the signal in seconds
+T = 2      # Total duration of the signal in seconds
 t = np.linspace(0, T, fs*T, endpoint=False)  # Time vector
 
 # 2. Define pulsar signal
 
 period = 0.5                 # Pulsar period in seconds
-frequency = 1 / period   # Convert period to frequency (Hz)
+frequency = 1 / period       # Convert period to frequency (Hz)
 signal = np.sin(2 * np.pi * frequency * t)  # Pure sinusoidal signal
 
 # Plot time-domain signal
@@ -23,7 +23,7 @@ plt.show()
 # 3. Add Gaussian noise
 
 noise = np.random.normal(0, 0.5, len(t))  # Random noise with mean 0, std 0.5
-noisy_signal = signal + noise                   # Add noise to original signal
+noisy_signal = signal + noise             # Add noise to original signal
 
 # Plot noisy signal
 plt.plot(t, noisy_signal)
@@ -54,3 +54,4 @@ peak_frequency = fft_freq[positive][peak_index]
 
 print("Detected Frequency:", peak_frequency, "Hz")
 print("Detected Period:", 1/peak_frequency, "seconds")
+
