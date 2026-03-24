@@ -8,10 +8,15 @@ Fourier Analysis converts the signals from time domain to frequency domain.
 Periodic signals produce sharp peaks at their respective frequencies while noise is random and is spread all over.
 
 _Methodology_
+
 1.simulated a pulsar signal using sine
+
 2.added gaussian noise to resemble observational data
+
 3.applied fast fourier transform 
+
 4.identified the dominant frequency peak
+
 5.recovered the pulsar signal using T=1/f where T-> time period and f->frequency
 
 _Results_
