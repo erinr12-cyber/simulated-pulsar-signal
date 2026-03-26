@@ -1,58 +1,57 @@
-import numpy as numpy
-import matplotlib.pyplot as plt
+import numpy as np
+import  matplotlib.pyplot as plt
 
-# 1.Time Axis
+# 1. Time Period
 
-sample_freq = 1000  # sampling frequency in Hz (samples per second)
-T = 2               # total duration of the signal (seconds)
-time = numpy.linspace(0, T, sample_freq*T, endpoint=False)  # time vector
+sample_freq = 1000   # number of samples every second - temporal resolution (Hz)
+T = 2                # Total duration (s) - 2000 data points
+time = np.linspace(0, T, sample_freq*T, endpoint=False)   #Time Vector - (start_time, stop_time, number of data points)
 
-# 2.Pulsar Period 
+# 2. Pulsar Signal
 
-period = 0.5                                                # pulsar period (seconds)
-freq= 1 / period                                            # convert period to frequency (Hz)
-signal = numpy.sin(2 * numpy.pi * freq * time)   #pure sin signal
+period = 0.2                              # pulsar period (s)
+frequency = 1/period                      # pulsar frequency (Hz)
+signal = np.sin(2*np.pi*frequency*time)   # pure sine signal - represents the pulsar signal
 
-# plot the time domain of the pure pulsar signal
+# Time domain plot of the sin signal
 plt.plot(time, signal)
 plt.title("Simulated Pulsar Signal (Time-Domain)")
 plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")
 plt.show()
 
-# 3. add gaussian noise - this mimics real observations
+# 3. Gaussian noise
 
-noise = numpy.random.normal(0, 0.5, len(time))  # random noise (with mean 0, std 0.5)
-noisy_signal= signal + noise                    # add noise to the original signal
+noise = np.random.normal(0,0.5,len(time)) # Normal Gaussian distribution - (mean-0, std-0.5, array length)
+noisy_signal = signal + noise             # add noise to the sin signal - this is to mimic real life observations where the pulsar signal is buried in noise
 
-# plot the noisy signal
+ # Plot the noisy signal
 plt.plot(time, noisy_signal)
 plt.title("Noisy Pulsar Signal")
 plt.xlabel("Time (s)")
-plt.ylabel("Amplitude" )
+plt.ylabel("Amplitude")
 plt.show()
 
-# 4.Fast Fourier transform filters the signal from noise using frequency domain
+# 4. Fast Fourier Transform
 
-fft_vals = numpy.fft.fft(noisy_signal)                            # compute FFT of noisy signal
-fft_freq = numpy.fft.fftfreq(len(time),1/sample_freq)             # frequency bins for the FFT
-fft_magnitude = numpy.abs(fft_vals)                               # magnitude spectrum
+fft_vals = np.fft.fft(noisy_signal)                             # calculate FFT of the noisy signal - decomposes complex signal into sum of sine and cosine waves of different frequencies
+fft_freq = np.fft.fftfreq(len(time), 1/sample_freq)             # frequency bins for FFT - calculate which frequency each bin in FFT represents
+fft_magnitude = np.abs(fft_vals)                                # magnitude spectrum - gives the strength of each frequency
 
-# real signals are symmetric - select only the positive frequencies
-positive = fft_freq >0
+# Select only the positive frequencies (real signals are symmetric in FFT)
+positive = fft_freq > 0     # (~1000 data points)
 
-# plot the frequency spectrum
+# Plot the frequency spectrum
 plt.plot(fft_freq[positive], fft_magnitude[positive])
 plt.title("Frequency Spectrum (FFT)")
 plt.xlabel("Frequency (Hz)")
 plt.ylabel("Magnitude")
 plt.show()
 
-# peak frequency plots the actual frequency of the periodic signal
-peak_index= numpy.argmax(fft_magnitude[positive])
-peak_frequency = fft_freq[positive][peak_index]
+#Find peak frequency
+peak_index = np.argmax(fft_magnitude[positive])     # index of the highest (tallest) value
+peak_frequency = fft_freq[positive][peak_index]     # the frequency the index represents
 
+#print the values
 print("Detected Frequency:", peak_frequency, "Hz")
 print("Detected Period:", 1/peak_frequency, "seconds")
-
-
