@@ -22,3 +22,12 @@ _Methodology_
 _Results_
 The fourier spectrum revealed a sharp peak at the simulated pulsar frequency.
 This demonstrates how frequency domain methods can be used to detect the underlying periodic signals.
+Real life examples of pulsar period analysis (PSR B1919+21) and 21cm hydrogen line observation uses the same methodology.
+
+
+_Inference_
+This simple project gives valuable insight into signal proccessing at its very core.
+It gives visual insight into time domain and frequency domain representations.
+Signal processing is extremely relevant in radio astronomy and medical feilds, where it helps identify underlying patterns.
+
+
