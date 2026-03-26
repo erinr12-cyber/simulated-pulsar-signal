@@ -7,6 +7,8 @@ A pulsar is a rotating neutron star that emits periodic bursts of electromagneti
 Fourier Analysis converts the signals from time domain to frequency domain.
 Periodic signals produce sharp peaks at their respective frequencies while noise is random and is spread all over.
 
+More about Fast Fourier transform : https://en.wikipedia.org/wiki/Fast_Fourier_transform
+
 _Methodology_
 
 1.simulated a pulsar signal using sine
