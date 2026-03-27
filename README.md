@@ -30,7 +30,7 @@ Real life examples of pulsar period analysis (PSR B1919+21) and 21cm hydrogen li
 _Limitations_
 This project assumes the pulsar signal is a perfect sine signal while real pulsars have more complex pulse profiles.
 Noise model is simplified and purely Gaussian, real life noise might include interference and other non random components.
-Ensures a controlled and idealised SNR (signal to noise ratio) ~6.02dB, real pulsars might have negative SNR.
+The methodology ensures a controlled and idealised SNR (signal to noise ratio) ~6.02dB, real pulsars might have negative SNR.
 
 _Inference_
 This simple project gives valuable insight into signal processing at its very core.
